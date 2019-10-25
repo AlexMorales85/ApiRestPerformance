@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo
+    networks: 
+      - apirest
+    ports:
+      - 27017:27017
+  
+  api-nodejs:
+    build: ./NodeJS
+    networks: 
+      - apirest
+    ports:
+      - 3000:3000
+    depends_on: 
+      - mongo
+
+  api-golang:
+    build: ./GoLang
+    networks: 
+      - apirest
+    ports:
+      - 4000:4000
+    depends_on: 
+      - mongo
+
+  api-netcore:
+    build: ./NetCore/apirest
+    networks: 
+      - apirest
+    ports:
+      - 5000:5000
+    depends_on: 
+      - mongo
+
+  load-test:
+    build: ./LoadTest
+    volumes:
+      - ./LoadTest/scripts:/usr/scripts
+    networks: 
+      - apirest
+    tty: true
+    depends_on: 
+      - mongo
+
+
+networks: 
+  apirest:

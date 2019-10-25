@@ -1,0 +1,15 @@
+{
+  "name": "api_rest_nodejs",
+  "version": "1.0.0",
+  "description": "Simple API REST with NodeJS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^2.10.0",
+    "mongoose": "^5.7.6"
+  }
+}
